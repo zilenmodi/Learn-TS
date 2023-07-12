@@ -187,20 +187,38 @@
 
 // let xx: BolArr = ["1"];
 
-type OptionsFlags<Type> = {
-  -readonly [Property in keyof Type as `set${Capitalize<
-    string & Property
-  >}`]-?: Type[Property] extends any ? Type[Property] : never;
-};
+// type OptionsFlags<Type> = {
+//   -readonly [Property in keyof Type as `set${Capitalize<
+//     string & Property
+//   >}`]-?: Type[Property] extends any ? Type[Property] : never;
+// };
 
-type Users = {
-  readonly name?: string;
-  readonly age?: number;
-};
+// type Users = {
+//   readonly name?: string;
+//   readonly age?: number;
+// };
 
-let x1: OptionsFlags<Users> = {
-  setName: "zilen",
-  setAge: 21,
-};
+// let x1: OptionsFlags<Users> = {
+//   setName: "zilen",
+//   setAge: 21,
+// };
 
 // x1["age"] = 23;
+
+// type MyParameters<T extends (...args: any[]) => any> = T extends (
+//   ...args: infer P
+// ) => any
+//   ? P
+//   : never;
+
+// type MyReturnType<T extends (...args: any[]) => any> = T extends (
+//   ...args: any[]
+// ) => infer R
+//   ? R
+//   : any;
+
+type X<T> = T extends [infer first, infer second, infer third] ? third : never;
+
+type Y = [string, number, boolean];
+
+type Z = X<Y>;
